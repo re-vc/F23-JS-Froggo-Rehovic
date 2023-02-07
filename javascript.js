@@ -63,4 +63,16 @@ function moveFroggoRight() {
     moveFroggo(currentFroggoY, currentFroggoX + 1);
 }
 
+const moveUp = document.getElementById('moveUp');
+moveUp.addEventListener('click', moveFroggoUp, false);
+
+const moveLeft = document.getElementById('moveLeft');
+moveLeft.addEventListener('click', moveFroggoLeft, false);
+
+const moveDown = document.getElementById('moveDown');
+moveDown.addEventListener('click', moveFroggoDown, false);
+
+const moveRight = document.getElementById('moveRight');
+moveRight.addEventListener('click', moveFroggoRight, false);
+
 createGrid(4, 4);
