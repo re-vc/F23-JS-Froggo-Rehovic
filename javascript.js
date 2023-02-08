@@ -1,6 +1,5 @@
 const container = document.getElementById('createContainer');
 let grid = [];
-let locationFroggo = [];
 let currentFroggoY;
 let currentFroggoX;
 
@@ -38,41 +37,58 @@ function moveFroggo(x, y) {
 
 function getFroggo() {
     const currentFroggo = document.querySelector('.item.froggo');
-    locationFroggo = [...grid].find(row => row.includes(currentFroggo));
+    const locationFroggo = [...grid].find(row => row.includes(currentFroggo));
+    let location = [];
     currentFroggoY = grid.indexOf(locationFroggo);
     currentFroggoX = locationFroggo.indexOf(currentFroggo);
+    location.push(currentFroggoX);
+    location.push(currentFroggoY);
+    return location;
 }
 
-function moveFroggoUp() {
-    getFroggo();
-    moveFroggo(currentFroggoY - 1, currentFroggoX);
+function setFroggo(direction) {
+    const location = getFroggo();
+    let newLocation;
+    switch (direction) {
+        case 'up':
+            newLocation = [location[0], location[1] - 1];
+            break;
+        case 'down':
+            newLocation = [location[0], location[1] + 1];
+            break;
+        case 'left':
+            newLocation = [location[0] - 1, location[1]];
+            break;
+        case 'right':
+            newLocation = [location[0] + 1, location[1]];
+            break;
+        default:
+            break;
+    }
+    moveFroggo(newLocation[1], newLocation[0]);
 }
 
-function moveFroggoDown() {
-    getFroggo();
-    moveFroggo(currentFroggoY + 1, currentFroggoX);
-}
+const buttons = document.querySelectorAll('button');
 
-function moveFroggoLeft() {
-    getFroggo();
-    moveFroggo(currentFroggoY, currentFroggoX - 1);
-}
-
-function moveFroggoRight() {
-    getFroggo();
-    moveFroggo(currentFroggoY, currentFroggoX + 1);
-}
-
-const moveUp = document.getElementById('moveUp');
-moveUp.addEventListener('click', moveFroggoUp, false);
-
-const moveLeft = document.getElementById('moveLeft');
-moveLeft.addEventListener('click', moveFroggoLeft, false);
-
-const moveDown = document.getElementById('moveDown');
-moveDown.addEventListener('click', moveFroggoDown, false);
-
-const moveRight = document.getElementById('moveRight');
-moveRight.addEventListener('click', moveFroggoRight, false);
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    switch (button.id) {
+      case 'moveUp':
+        setFroggo('up');
+        break;
+      case 'moveLeft':
+        setFroggo('left');
+        break;
+      case 'moveDown':
+        setFroggo('down');
+        break;
+      case 'moveRight':
+        setFroggo('right');
+        break;
+      default:
+        break;
+    }
+  });
+});
 
 createGrid(4, 4);
