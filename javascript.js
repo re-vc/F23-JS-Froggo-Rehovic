@@ -1,7 +1,5 @@
 const container = document.getElementById('createContainer');
 let grid = [];
-let currentFroggoY;
-let currentFroggoX;
 
 function createGrid(rows, cols) {
     const newSizes = `repeat(${rows}, 1fr) / repeat(${cols}, 1fr)`;
@@ -39,8 +37,8 @@ function getFroggo() {
     const currentFroggo = document.querySelector('.item.froggo');
     const locationFroggo = [...grid].find(row => row.includes(currentFroggo));
     let location = [];
-    currentFroggoY = grid.indexOf(locationFroggo);
-    currentFroggoX = locationFroggo.indexOf(currentFroggo);
+    const currentFroggoY = grid.indexOf(locationFroggo);
+    const currentFroggoX = locationFroggo.indexOf(currentFroggo);
     location.push(currentFroggoX);
     location.push(currentFroggoY);
     return location;
