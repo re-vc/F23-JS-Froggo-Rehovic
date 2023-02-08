@@ -71,24 +71,24 @@ function setFroggo(direction) {
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    switch (button.id) {
-      case 'moveUp':
-        setFroggo('up');
-        break;
-      case 'moveLeft':
-        setFroggo('left');
-        break;
-      case 'moveDown':
-        setFroggo('down');
-        break;
-      case 'moveRight':
-        setFroggo('right');
-        break;
-      default:
-        break;
-    }
-  });
+    button.addEventListener('click', () => {
+        switch (button.id) {
+            case 'moveUp':
+                setFroggo('up');
+                break;
+            case 'moveLeft':
+                setFroggo('left');
+                break;
+            case 'moveDown':
+                setFroggo('down');
+                break;
+            case 'moveRight':
+                setFroggo('right');
+                break;
+            default:
+                break;
+        }
+    });
 });
 
 createGrid(4, 4);
